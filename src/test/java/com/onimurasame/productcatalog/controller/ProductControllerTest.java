@@ -22,17 +22,11 @@ class ProductControllerTest {
     @DisplayName("Test GET /products")
     void test_getProducts() throws IOException {
         ProductController productController = new ProductController();
-        ResponseEntity responseEntity = productController.getProducts();
+        String responseEntity = productController.process();
 
         assertNotNull(responseEntity);
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertNotNull(responseEntity.getBody());
+        assertEquals("Done", responseEntity);
 
-        Product[] productList = new ObjectMapper().readValue(responseEntity.getBody().toString(), TypeFactory.defaultInstance().constructArrayType(Product.class));
-
-        assertEquals(2, productList.length);
-        assertNotNull(productList[0]);
-       // assertEquals("T-shirt", productList[0].getName());
     }
 
 }
